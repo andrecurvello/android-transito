@@ -21,8 +21,8 @@ import org.osmdroid.views.util.constants.MapViewConstants;
 
 public class MainActivity extends Activity implements MapViewConstants {
 
-    private static final int ATUALIZACAO_MT = 1;
-    private static final int ATUALIZACAO_MS = 1000;
+    private static final int ATUALIZACAO_MT = 10; //10 metros
+    private static final int ATUALIZACAO_MS = 1000; //1 segundo
     private static final String LOCATION_PROVIDER = LocationManager.GPS_PROVIDER;
 
     private MapView map;
