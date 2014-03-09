@@ -119,17 +119,14 @@ class MapLocationListener implements LocationListener {
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
-        Log.d(MapLocationListener.class.getSimpleName(), "onStatusChanged: " + status);
     }
 
     @Override
     public void onProviderEnabled(String provider) {
-        Log.d(MapLocationListener.class.getSimpleName(), "onProviderEnabled: " + provider);
     }
 
     @Override
     public void onProviderDisabled(String provider) {
-        Log.d(MapLocationListener.class.getSimpleName(), "onProviderDisabled: " + provider);
     }
 }
 
