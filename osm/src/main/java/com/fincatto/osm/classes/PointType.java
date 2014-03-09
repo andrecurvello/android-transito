@@ -18,11 +18,25 @@ public enum PointType {
         this.speedOptions = speedOptions;
     }
 
+    public static PointType valueOfCodigo(int codigo) {
+        for (PointType type : PointType.values()) {
+            if (type.getCode() == codigo) {
+                return type;
+            }
+        }
+        return null;
+    }
+
     public int getCode() {
         return code;
     }
 
     public List<Integer> getSpeedOptions() {
         return Collections.unmodifiableList(speedOptions);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("PointType{code=%s, name=%s}", this.code, this.name());
     }
 }

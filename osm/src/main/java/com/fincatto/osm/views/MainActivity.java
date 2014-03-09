@@ -81,7 +81,14 @@ public class MainActivity extends Activity implements MapViewConstants {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        //lista os pontos ja inseridos
+//        for(Point point : new DBPoint(this.getApplicationContext()).findAll()) {
+//            Log.d("point", point.toString());
+//        }
+
+        //vai para selecao do tipo do ponto
         final Intent intent = new Intent(getApplicationContext(), SelectPointTypeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("lastKnownLocation", locationManager.getLastKnownLocation(LOCATION_PROVIDER));
         this.startActivity(intent);
         return true;

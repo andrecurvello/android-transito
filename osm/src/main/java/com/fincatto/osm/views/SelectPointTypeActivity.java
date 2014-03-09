@@ -31,6 +31,7 @@ public class SelectPointTypeActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final PointType pointType = (PointType) listView.getItemAtPosition(position);
                 final Intent intent = new Intent(getApplicationContext(), SelectPointTypeValueActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("lastKnownLocation", lastKnownLocation);
                 intent.putExtra("pointType", pointType);
                 startActivity(intent);

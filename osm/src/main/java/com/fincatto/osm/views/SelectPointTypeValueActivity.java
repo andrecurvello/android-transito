@@ -4,14 +4,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 
 import com.fincatto.osm.R;
+import com.fincatto.osm.classes.Point;
 import com.fincatto.osm.classes.PointType;
+import com.fincatto.osm.database.DBPoint;
 
 public class SelectPointTypeValueActivity extends Activity {
 
@@ -32,13 +33,17 @@ public class SelectPointTypeValueActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //salva o ponto
-                final Integer velocidade = (Integer) gridView.getItemAtPosition(position);
-                Log.d(SelectPointTypeValueActivity.class.getSimpleName(), String.format("Tipo: %s, Velocidade: %s, Local: %s", pointType, velocidade, lastKnownLocation.toString()));
+                final Point point = new Point();
+                point.setType(pointType);
+                point.setSpeed((Integer) gridView.getItemAtPosition(position));
+                point.setLatitude(lastKnownLocation.getLatitude());
+                point.setLongitude(lastKnownLocation.getLongitude());
+                new DBPoint(getApplicationContext()).insert(point);
 
                 //volta para a home
-                final Intent main = new Intent(getApplicationContext(), MainActivity.class);
-                main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(main);
+                final Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         });
     }
