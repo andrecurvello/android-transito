@@ -2,11 +2,13 @@ package com.fincatto.osm;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
@@ -61,6 +63,13 @@ public class MainActivity extends Activity implements MapViewConstants {
         //atualiza a localizacao a cada segundo ou um metro
         this.locationListener = new MapLocationListener(map);
         locationManager.requestLocationUpdates(LOCATION_PROVIDER, ATUALIZACAO_MS, ATUALIZACAO_MT, locationListener);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        Log.d(MapLocationListener.class.getSimpleName(), "onTouchEvent: " + locationManager.getLastKnownLocation(LOCATION_PROVIDER).toString());
+        this.startActivity(new Intent(MainActivity.this, SelectPointTypeActivity.class));
+        return true;
     }
 
     @Override
