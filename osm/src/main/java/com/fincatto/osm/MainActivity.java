@@ -2,20 +2,15 @@ package com.fincatto.osm;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 
-import org.osmdroid.api.IGeoPoint;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
-import org.osmdroid.views.overlay.Overlay;
 import org.osmdroid.views.overlay.compass.CompassOverlay;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 import org.osmdroid.views.util.constants.MapViewConstants;
@@ -107,6 +102,7 @@ class MapLocationListener implements LocationListener {
     public void onLocationChanged(Location location) {
         Log.d(MapLocationListener.class.getSimpleName(), "onLocationChanged: " + location.toString());
         this.map.getController().setCenter(new GeoPoint(location.getLatitude(), location.getLongitude()));
+        this.map.setMapOrientation(location.getBearing());
     }
 
     @Override
@@ -125,30 +121,30 @@ class MapLocationListener implements LocationListener {
     }
 }
 
-class MapOverlay extends Overlay {
-
-    private final IGeoPoint geoPoint;
-    private final int color;
-
-    public MapOverlay(final Context ctx, final IGeoPoint geoPoint, final int color) {
-        super(ctx);
-        this.geoPoint = geoPoint;
-        this.color = color;
-    }
-
-    @Override
-    protected void draw(Canvas canvas, MapView mapView, boolean shadow) {
-        if (!shadow) {
-            //cria um marca
-            final Paint paint = new Paint();
-            paint.setStyle(Paint.Style.FILL);
-            paint.setColor(this.color);
-            paint.setAntiAlias(true);
-
-            //adiciona a marca no meio do mapa
-            final Rect viewportRect = new Rect();
-            viewportRect.set(mapView.getProjection().getScreenRect());
-            canvas.drawCircle(viewportRect.centerX(), viewportRect.centerY(), 10, paint);
-        }
-    }
-}
+//class MapOverlay extends Overlay {
+//
+//    private final IGeoPoint geoPoint;
+//    private final int color;
+//
+//    public MapOverlay(final Context ctx, final IGeoPoint geoPoint, final int color) {
+//        super(ctx);
+//        this.geoPoint = geoPoint;
+//        this.color = color;
+//    }
+//
+//    @Override
+//    protected void draw(Canvas canvas, MapView mapView, boolean shadow) {
+//        if (!shadow) {
+//            //cria um marca
+//            final Paint paint = new Paint();
+//            paint.setStyle(Paint.Style.FILL);
+//            paint.setColor(this.color);
+//            paint.setAntiAlias(true);
+//
+//            //adiciona a marca no meio do mapa
+//            final Rect viewportRect = new Rect();
+//            viewportRect.set(mapView.getProjection().getScreenRect());
+//            canvas.drawCircle(viewportRect.centerX(), viewportRect.centerY(), 10, paint);
+//        }
+//    }
+//}
