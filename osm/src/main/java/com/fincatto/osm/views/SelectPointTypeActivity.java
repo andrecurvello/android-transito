@@ -1,7 +1,9 @@
-package com.fincatto.osm;
+package com.fincatto.osm.views;
 
 import android.app.Activity;
 import android.os.Bundle;
+
+import com.fincatto.osm.R;
 
 public class SelectPointTypeActivity extends Activity {
 

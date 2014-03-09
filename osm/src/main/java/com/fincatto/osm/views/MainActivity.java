@@ -1,4 +1,4 @@
-package com.fincatto.osm;
+package com.fincatto.osm.views;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,6 +9,8 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
+
+import com.fincatto.osm.R;
 
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
