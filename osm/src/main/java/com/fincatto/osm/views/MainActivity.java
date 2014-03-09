@@ -133,7 +133,7 @@ class MapLocationListener implements LocationListener {
     public void onLocationChanged(Location location) {
         Log.d(MapLocationListener.class.getSimpleName(), "onLocationChanged: " + location.toString());
         this.map.getController().setCenter(new GeoPoint(location.getLatitude(), location.getLongitude()));
-        this.map.setMapOrientation(location.getBearing());
+        //this.map.setMapOrientation(location.getBearing());
     }
 
     @Override
