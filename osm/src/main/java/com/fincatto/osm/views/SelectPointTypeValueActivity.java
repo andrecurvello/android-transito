@@ -36,7 +36,7 @@ public class SelectPointTypeValueActivity extends Activity {
                 Log.d(SelectPointTypeValueActivity.class.getSimpleName(), String.format("Tipo: %s, Velocidade: %s, Local: %s", pointType, velocidade, lastKnownLocation.toString()));
 
                 //volta para a home
-                final Intent main = new Intent(SelectPointTypeValueActivity.this, MainActivity.class);
+                final Intent main = new Intent(getApplicationContext(), MainActivity.class);
                 main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(main);
             }
