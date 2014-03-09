@@ -69,8 +69,9 @@ public class MainActivity extends Activity implements MapViewConstants {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.d(MapLocationListener.class.getSimpleName(), "onTouchEvent: " + locationManager.getLastKnownLocation(LOCATION_PROVIDER).toString());
-        this.startActivity(new Intent(MainActivity.this, SelectPointTypeActivity.class));
+        final Intent intent = new Intent(MainActivity.this, SelectPointTypeActivity.class);
+        intent.putExtra("lastKnownLocation", locationManager.getLastKnownLocation(LOCATION_PROVIDER));
+        this.startActivity(intent);
         return true;
     }
 
