@@ -1,6 +1,7 @@
 package com.fincatto.osm.views;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,9 +31,14 @@ public class SelectPointTypeValueActivity extends Activity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //salva o ponto
                 final Integer velocidade = (Integer) gridView.getItemAtPosition(position);
                 Log.d(SelectPointTypeValueActivity.class.getSimpleName(), String.format("Tipo: %s, Velocidade: %s, Local: %s", pointType, velocidade, lastKnownLocation.toString()));
-                finish();
+
+                //volta para a home
+                final Intent main = new Intent(SelectPointTypeValueActivity.this, MainActivity.class);
+                main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(main);
             }
         });
     }
