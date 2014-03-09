@@ -47,8 +47,10 @@ public class MainActivity extends Activity implements MapViewConstants {
 
         //centraliza o mapa na ultima localizacao conhecida
         final Location lastKnownLocation = locationManager.getLastKnownLocation(LOCATION_PROVIDER);
-        final GeoPoint geoPointCenter = new GeoPoint(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
-        this.map.getController().setCenter(geoPointCenter);
+        if (lastKnownLocation != null) {
+            final GeoPoint geoPointCenter = new GeoPoint(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
+            this.map.getController().setCenter(geoPointCenter);
+        }
 
         //adiciona a bussola no mapa
         this.compassOverlay = new CompassOverlay(this, this.map);
@@ -65,6 +67,16 @@ public class MainActivity extends Activity implements MapViewConstants {
         //atualiza a localizacao a cada segundo ou um metro
         this.locationListener = new MapLocationListener(map);
         locationManager.requestLocationUpdates(LOCATION_PROVIDER, ATUALIZACAO_MS, ATUALIZACAO_MT, locationListener);
+
+//        //notification test
+//        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+//        stackBuilder.addParentStack(MainActivity.class);
+//        stackBuilder.addNextIntent(new Intent(this, SelectPointTypeActivity.class));
+//
+//        NotificationCompat.Builder builder = new NotificationCompat.Builder(this).setContentTitle("My notification").setContentText("Hello World!");
+//        builder.setContentIntent(stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT));
+//        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//        notificationManager.notify(666, builder.build());
     }
 
     @Override
